@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require "carrierwave"
+require 'carrierwave/cloudflare'
 
 RSpec.describe CarrierWave::Cloudflare do
   let(:uploader) { DummyUploader.new }
@@ -23,13 +25,18 @@ RSpec.describe CarrierWave::Cloudflare do
 
   after do
     Object.send(:remove_const, 'DummyUploader') if defined?(::DummyUploader)
-    FileUtils.rm_rf(Rails.root.join(uploaders_folder, cache_id))
+    # FileUtils.rm_rf(Rails.root.join(uploaders_folder, cache_id))
   end
 
-  let(:test_file) { File.open(Rails.root.join(file_path, test_file_name)) }
+  let(:test_file) do
+    File.open(
+      File.join(File.dirname(__FILE__), '../', uploaders_folder, test_file_name)
+    )
+  end
+
   let(:file_path) { 'spec/fixtures/carrierwave_cloudflare' }
   let(:test_file_name) { 'test_img.jpg' }
-  let(:uploaders_folder) { 'public/uploads/tmp' }
+  let(:uploaders_folder) { 'tmp' }
 
   let(:cache_id) { '1369894322-345-1234-2255' }
 
