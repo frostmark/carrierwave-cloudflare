@@ -1,3 +1,5 @@
+require 'active_support'
+
 require "carrierwave/cloudflare/version"
 
 module CarrierWave
