@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'carrierwave'
-require 'carrierwave/cloudflare'
 
 RSpec.describe CarrierWave::Cloudflare do
   let(:uploader) { DummyUploader.new }

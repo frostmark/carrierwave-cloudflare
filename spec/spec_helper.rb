@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+
 require 'carrierwave'
 require 'carrierwave/cloudflare'
+
 require 'pry'
 
 RSpec.configure do |config|
