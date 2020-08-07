@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'rack/utils'
 
 module CarrierWave::Cloudflare::URL
   class QueryString < Hash
-
     Parser = Object.new.tap do |obj|
       obj.extend(Rack::Utils)
 
@@ -12,7 +13,7 @@ module CarrierWave::Cloudflare::URL
 
     def initialize(query = '')
       super()
-      self.merge!(Parser.parse_query(query))
+      merge!(Parser.parse_query(query))
     end
 
     def to_query
@@ -20,6 +21,6 @@ module CarrierWave::Cloudflare::URL
       result unless result.empty?
     end
 
-    alias_method :to_s, :to_query
+    alias to_s to_query
   end
 end

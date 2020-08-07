@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'url/query_string'
 
 module CarrierWave::Cloudflare
@@ -16,7 +18,8 @@ module CarrierWave::Cloudflare
 
       if should_modify_path?
         if %r{/cdn-cgi/image/([^/]+)(/.*)} =~ uri.path
-          formatted, original_path = $~[1], $~[2]
+          formatted = $LAST_MATCH_INFO[1]
+          original_path = $LAST_MATCH_INFO[2]
 
           options = parse_options(formatted)
           uri.path = original_path
@@ -24,7 +27,7 @@ module CarrierWave::Cloudflare
       else
         query = QueryString.new(uri.query)
 
-        if query.has_key?('cdn-cgi')
+        if query.key?('cdn-cgi')
           options = parse_options(query['cdn-cgi'], separator: '.', assigner: '-')
         end
       end
@@ -38,22 +41,22 @@ module CarrierWave::Cloudflare
 
       pairs = sanitized_options(options)
 
-      unless pairs.empty?
+      if pairs.empty?
+        url
+      else
         append_options!(uri, pairs)
         uri.to_s
-      else
-        url
       end
     end
 
     def append_options!(uri, options)
       if should_modify_path?
-        segment = '/cdn-cgi/image/' + options.map {|k,v| "#{k}=#{v}"}.join(',')
+        segment = '/cdn-cgi/image/' + options.map { |k, v| "#{k}=#{v}" }.join(',')
         uri.path = segment + uri.path
       else
         uri.query = QueryString.new(uri.query).tap do |params|
           # the format is "width-500.height.200", only safe symbols are used
-          param_with_options = options.map {|k,v| "#{k}-#{v}"}.join('.')
+          param_with_options = options.map { |k, v| "#{k}-#{v}" }.join('.')
 
           params['cdn-cgi'] = param_with_options
         end.to_query
@@ -66,11 +69,11 @@ module CarrierWave::Cloudflare
         [idx, [k, v]]
       end
 
-      filtered = ordered.select {|i,| i}.sort_by {|i,| i}
+      filtered = ordered.select { |i,| i }.sort
 
-      sanitized = filtered.map do |_, (k, v)|
+      filtered.map do |_, (k, v)|
         v = v.join('x') if v.is_a?(Array)
-        [k,v]
+        [k, v]
       end
     end
 
