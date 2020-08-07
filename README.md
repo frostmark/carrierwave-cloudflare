@@ -33,21 +33,18 @@ Define `virtual` version in some uploader:
 ```ruby
 class AvatarUploader < BaseUploader
   version(:medium) do
-    cdn_transform(
-      width: 100,
-      height: 100,
-      dpr: 2
-    )
+    cdn_transform width: 100, height: 100, dpr: 2
   end
 end
 
-> User.avatar.medium # CarrierWave::Uploader
-> User.avatar.url # "https://s3.resume.io/users/avatar/1.jpg"
-> User.avatar.medium_url   # "https://s3.resume.io/cdn-cgi/.../users/avatar/1.jpg"
-> User.avatar.medium.url   # "https://s3.resume.io/cdn-cgi/.../users/avatar/1.jpg"
-> User.avatar.url(:medium) # "https://s3.resume.io/cdn-cgi/.../users/avatar/1.jpg"
-> User.avatar.medium.url(dpr: 1)
-> User.avatar.resize(width: 1200, fit: :cover).url
+
+User.avatar.medium # CarrierWave::Uploader
+User.avatar.url # "https://s3.resume.io/users/avatar/1.jpg"
+User.avatar.medium_url   # "https://s3.resume.io/cdn-cgi/.../users/avatar/1.jpg"
+User.avatar.medium.url   # "https://s3.resume.io/cdn-cgi/.../users/avatar/1.jpg"
+User.avatar.url(:medium) # "https://s3.resume.io/cdn-cgi/.../users/avatar/1.jpg"
+User.avatar.medium.url(dpr: 1)
+User.avatar.resize(width: 1200, fit: :cover).url
 ```
 
 ### Options
@@ -58,6 +55,13 @@ Supported options:
 
 See details in Cloudflare [documentation](https://developers.cloudflare.com/images/about)
 
+Also, you can define default options (supports all options described above)
+
+```ruby
+class BaseUploader < CarrierWave::Uploader::Base
+  default_cdn_options format: :auto
+end
+```
 
 ## Development
 
