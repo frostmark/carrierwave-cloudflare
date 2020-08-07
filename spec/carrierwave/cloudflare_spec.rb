@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require "carrierwave"
+require 'carrierwave'
 require 'carrierwave/cloudflare'
 
 RSpec.describe CarrierWave::Cloudflare do
@@ -25,18 +25,20 @@ RSpec.describe CarrierWave::Cloudflare do
 
   after do
     Object.send(:remove_const, 'DummyUploader') if defined?(::DummyUploader)
-    # FileUtils.rm_rf(Rails.root.join(uploaders_folder, cache_id))
+    FileUtils.rm_rf(File.join(uploaders_folder, cache_id))
   end
+
+  let(:root) { File.expand_path('../../', __dir__) }
 
   let(:test_file) do
     File.open(
-      File.join(File.dirname(__FILE__), '../', uploaders_folder, test_file_name)
+      File.join(root, 'spec/fixtures', test_file_name)
     )
   end
 
-  let(:file_path) { 'spec/fixtures/carrierwave_cloudflare' }
+  let(:uploaders_folder) { File.join(root, 'uploads', 'tmp') }
+
   let(:test_file_name) { 'test_img.jpg' }
-  let(:uploaders_folder) { 'tmp' }
 
   let(:cache_id) { '1369894322-345-1234-2255' }
 
@@ -48,7 +50,7 @@ RSpec.describe CarrierWave::Cloudflare do
     before { uploader.cache!(test_file) }
 
     it 'parent version is stored' do
-      is_expected.to eql(Rails.root.join(uploaders_folder, cache_id, test_file_name).to_s)
+      is_expected.to eq(File.join(uploaders_folder, cache_id, test_file_name).to_s)
     end
 
     describe '(:virtual_version)' do

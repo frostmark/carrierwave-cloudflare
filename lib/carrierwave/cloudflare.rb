@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'active_support'
 
-require "carrierwave/cloudflare/version"
+require 'carrierwave/cloudflare/version'
 
 module CarrierWave
   module Cloudflare
@@ -20,6 +22,7 @@ module CarrierWave
 
       def default_cdn_options(**defaults)
         return _default_cdn_options if defaults.empty?
+
         self._default_cdn_options = defaults
       end
     end

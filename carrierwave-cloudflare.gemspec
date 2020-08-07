@@ -5,7 +5,7 @@ require_relative 'lib/carrierwave/cloudflare/version'
 Gem::Specification.new do |spec|
   spec.name          = 'carrierwave-cloudflare'
   spec.version       = Carrierwave::Cloudflare::VERSION
-  spec.authors       = ['Mark Frost']
+  spec.authors       = ['Mark Frost', 'Alexey Taktarov']
   spec.email         = ['cheerful.mf@gmail.com']
 
   spec.summary       = 'Wrapper for cloudflare transforming images'
@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'activesupport', '~> 5.2'
   spec.add_development_dependency 'rack', '~> 2.0'
+  spec.add_development_dependency 'pry'
 
-  spec.add_dependency 'carrierwave', '~> 2.0'
+  spec.add_dependency 'carrierwave', '~> 1.3'
 end
