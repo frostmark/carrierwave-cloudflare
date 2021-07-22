@@ -63,6 +63,24 @@ class BaseUploader < CarrierWave::Uploader::Base
 end
 ```
 
+### In development env
+
+In development, you don't need to generate URLs for Cloudflare, because they will not work and therefore you need to disable the Cloudflare transform
+
+``` ruby
+CarrierWave::Cloudflare.configure do |config|
+  config.cloudflare_transform(false)
+end
+```
+
+`cloudflare_transform: false` disables links generation and put all Cloudflare's arguments into query string (for easy debugging)
+
+e.g:
+
+```
+/1.jpg?cdn-cgi=width-11.height-300.fit-pad
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
