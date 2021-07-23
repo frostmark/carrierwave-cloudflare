@@ -28,8 +28,8 @@ class BaseUploader < CarrierWave::Uploader::Base
 end
 ```
 
+Use `cdn_transform` for define Cloudflare's version (this means that now the file will not be stored on the, but will be transformed on the cloudflare side)
 
-Define `virtual` version in some uploader:
 ```ruby
 class AvatarUploader < BaseUploader
   version(:medium) do
@@ -37,14 +37,13 @@ class AvatarUploader < BaseUploader
   end
 end
 
-
-User.avatar.medium # CarrierWave::Uploader
-User.avatar.url # "https://s3.resume.io/users/avatar/1.jpg"
-User.avatar.medium_url   # "https://s3.resume.io/cdn-cgi/.../users/avatar/1.jpg"
-User.avatar.medium.url   # "https://s3.resume.io/cdn-cgi/.../users/avatar/1.jpg"
-User.avatar.url(:medium) # "https://s3.resume.io/cdn-cgi/.../users/avatar/1.jpg"
-User.avatar.medium.url(dpr: 1)
-User.avatar.resize(width: 1200, fit: :cover).url
+user = User.find(some_id)
+user.avatar.medium # CarrierWave::Uploader
+user.avatar.url # "https://s3.your-website.com/users/avatar/1.jpg"
+user.avatar.medium_url   # "https://s3.your-website.com/cdn-cgi/width=100,height=100,dpr=2/users/avatar/1.jpg"
+user.avatar.url(:medium) # "https://s3.your-website.com/cdn-cgi/width=100,height=100,dpr=2/users/avatar/1.jpg"
+user.avatar.medium.url(dpr: 1) # "https://s3.your-website.com/cdn-cgi/width=100,height=100,dpr=1/users/avatar/1.jpg"
+user.avatar.resize(width: 1200, fit: :cover).url # "https://s3.your-website.com/cdn-cgi/width=1200,height=100,dpr=2,fit=cover/users/avatar/1.jpg"
 ```
 
 ### Options
