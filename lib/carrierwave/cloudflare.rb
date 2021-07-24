@@ -102,4 +102,4 @@ module CarrierWave
   end
 end
 
-require_relative 'cloudflare/url'
+require 'carrierwave/cloudflare/url'

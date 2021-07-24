@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'url/query_string'
+require 'carrierwave/cloudflare/url/query_string'
 
 module CarrierWave::Cloudflare
   module URL
