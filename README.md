@@ -1,5 +1,7 @@
 # Carrierwave::Cloudflare
 
+[![Tests](https://github.com/resume-io/carrierwave-cloudflare/actions/workflows/run-specs.yml/badge.svg?branch=master)](https://github.com/resume-io/carrierwave-cloudflare/actions/workflows/run-specs.yml)
+
 This gem provides a simple wrapper for transformation images via Cloudflare
 
 
