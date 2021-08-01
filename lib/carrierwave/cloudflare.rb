@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'active_support'
+require "active_support"
 
-require 'carrierwave/cloudflare/version'
+require "carrierwave/cloudflare/version"
 
 module CarrierWave
   module Cloudflare
@@ -72,7 +72,7 @@ module CarrierWave
     def resize(**options)
       # build temporary uploader
       uploader = self.class.dup
-      self.class.const_set("Uploader#{uploader.object_id}".tr('-', '_'), uploader)
+      self.class.const_set("Uploader#{uploader.object_id}".tr("-", "_"), uploader)
       uploader.version_options = { cdn_transform: options }
 
       # init the instance uploader and set parent_version
@@ -102,4 +102,4 @@ module CarrierWave
   end
 end
 
-require_relative 'cloudflare/url'
+require "carrierwave/cloudflare/url"

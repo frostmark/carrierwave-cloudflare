@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'activesupport', '~> 5.2'
+  spec.add_development_dependency 'actionview', '~> 5.2'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rack', '~> 2.0'
   spec.add_development_dependency 'rake'

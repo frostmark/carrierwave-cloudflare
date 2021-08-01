@@ -2,6 +2,8 @@
 
 This gem provides a simple wrapper for transformation images via Cloudflare
 
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -79,6 +81,51 @@ e.g:
 ```
 /1.jpg?cdn-cgi=width-11.height-300.fit-pad
 ```
+
+## Rails views helpers
+
+### cdn_transformed(url, **options)
+Returns an image URL with CDN transformations applied. Can process already transformed URLs, in that case the options will be merged together.
+
+```ruby
+cdn_transformed('/img.jpg', width: 400)
+# => '/cdn-cgi/image/width=400/img.jpg'
+
+cdn_transformed('/cdn-cgi/image/width=100,fit=pad/img.jpg', width: 333)
+# => '/cdn-cgi/image/width=333,fit=pad/img.jpg'
+```
+
+
+### hidpi_image_tag(url, dprs: nil, **options)
+
+Returns an image tag with with scaled variations (via `srcset`) attribute for devices with different DPR values.
+
+
+The transformation of the original image should be specified via options.
+
+```ruby
+hidpi_image_tag('/bird.jpg', width: 400, drps: [1, 2])
+# => <img srcset="/cdn-cgi/image/width=400,dpr=1/img.jpg 1x, /cdn-cgi/image/width=400,dpr=2/img.jpg 2x" src="/cdn-cgi/image/width=400/img.jpg" />
+```
+
+
+### responsive_image_tag(url, width:, sizes: nil, dprs: [1, 2], **options)
+
+Returns a reponsive image tag with variations.
+
+```ruby
+responsive_image_tag('/bird.jpg', width: 1200, sizes: { phone: 600, tablet: 800 })
+
+# => <img srcset="/cdn-cgi/image/width=1200,dpr=0.5/bird.jpg 600w,
+#                  /cdn-cgi/image/width=1200,dpr=1.0/bird.jpg 1200w,
+#                  /cdn-cgi/image/width=1200,dpr=0.67/bird.jpg 800w,
+#                  /cdn-cgi/image/width=1200,dpr=1.33/bird.jpg 1600w,
+#                  /cdn-cgi/image/width=1200,dpr=2.0/bird.jpg 2400w"
+#                  sizes="(max-width: 767px) 600px, (max-width: 1023px) 800px, 1200px"
+#                  src="/cdn-cgi/image/width=1200/bird.jpg" />
+
+```
+
 
 ## Development
 
