@@ -13,10 +13,10 @@ module CarrierWave
         # ==== Examples
         #
         #   cdn_transformed('/img.jpg', width: 400)
-        #   # => '/cdn-cgi/images/width=400/img.jpg'
+        #   # => '/cdn-cgi/image/width=400/img.jpg'
         #
         #   cdn_transformed('/cdn-cgi/image/width=100,fit=pad/img.jpg', width: 333)
-        #   # => '/cdn-cgi/images/width=333,fit=pad/img.jpg'
+        #   # => '/cdn-cgi/image/width=333,fit=pad/img.jpg'
         #
         def cdn_transformed(url, **options)
           base_options = BaseUploader.default_cdn_options

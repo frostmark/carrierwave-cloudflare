@@ -256,3 +256,9 @@ Style/TrailingCommaInArguments:
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-trailing-array-commas
   Enabled: false
   EnforcedStyleForMultiline: no_comma
+
+Metrics/BlockLength:
+  Description: Check if the length of a block exceeds some maximum value.
+  Enabled: true
+  Exclude:
+    - spec/**/*
