@@ -27,9 +27,7 @@ RSpec.describe CarrierWave::Cloudflare::ActionView::ResponsiveImagesHelper do
   describe "#cdn_transformed" do
     context "when cloudflare_transform is true" do
       before do
-        CarrierWave::Cloudflare.configure do |config|
-          config.cloudflare_transform true
-        end
+        allow(CarrierWave::Cloudflare).to receive(:cloudflare_transform).and_return(true)
       end
 
       it "transforms url" do
@@ -49,9 +47,7 @@ RSpec.describe CarrierWave::Cloudflare::ActionView::ResponsiveImagesHelper do
   describe "#hidpi_image_tag" do
     context "when cloudflare_transform is true" do
       before do
-        CarrierWave::Cloudflare.configure do |config|
-          config.cloudflare_transform true
-        end
+        allow(CarrierWave::Cloudflare).to receive(:cloudflare_transform).and_return(true)
       end
 
       it "generates image tag with srcset" do
@@ -66,9 +62,7 @@ RSpec.describe CarrierWave::Cloudflare::ActionView::ResponsiveImagesHelper do
   describe "#hidpi_image_srcset" do
     context "when cloudflare_transform is true" do
       before do
-        CarrierWave::Cloudflare.configure do |config|
-          config.cloudflare_transform true
-        end
+        allow(CarrierWave::Cloudflare).to receive(:cloudflare_transform).and_return(true)
       end
 
       it "generates image srcset" do
@@ -90,9 +84,7 @@ RSpec.describe CarrierWave::Cloudflare::ActionView::ResponsiveImagesHelper do
   describe "#responsive_image_tag" do
     context "when cloudflare_transform is true" do
       before do
-        CarrierWave::Cloudflare.configure do |config|
-          config.cloudflare_transform true
-        end
+        allow(CarrierWave::Cloudflare).to receive(:cloudflare_transform).and_return(true)
       end
 
       it "generates image responsive image tag" do

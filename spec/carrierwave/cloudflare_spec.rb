@@ -60,9 +60,7 @@ RSpec.describe CarrierWave::Cloudflare do
 
       context "when cloudflare_transform is true" do
         before do
-          CarrierWave::Cloudflare.configure do |config|
-            config.cloudflare_transform true
-          end
+          allow(CarrierWave::Cloudflare).to receive(:cloudflare_transform).and_return(true)
         end
 
         it "returns url with cloduflare params" do
