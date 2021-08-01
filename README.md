@@ -2,6 +2,8 @@
 
 This gem provides a simple wrapper for transformation images via Cloudflare
 
+<img src="img/logo.svg" align="right" width="300" >
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -78,6 +80,15 @@ e.g:
 
 ```
 /1.jpg?cdn-cgi=width-11.height-300.fit-pad
+```
+
+## Rails views helpers
+
+### cdn_transformed(url, **options)
+  Returns an image URL with CDN transformations applied. Can process already transformed URLs, in that case the options will be merged together.
+
+```
+
 ```
 
 ## Development
