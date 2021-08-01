@@ -1,4 +1,6 @@
-<img src="img/logo.svg" align="right" width="220" >
+<img src="img/logo.svg" align="right" width="300" >
+
+
 # Carrierwave::Cloudflare
 
 This gem provides a simple wrapper for transformation images via Cloudflare
