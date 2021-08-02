@@ -32,7 +32,7 @@ class BaseUploader < CarrierWave::Uploader::Base
 end
 ```
 
-Use `cdn_transform` for define Cloudflare's version (this means that now the file will not be stored on the, but will be transformed on the cloudflare side)
+Use `cdn_transform` for define Cloudflare's version (this means that now the file will not be stored on a server, but will be transformed on the cloudflare side)
 
 ```ruby
 class AvatarUploader < BaseUploader
