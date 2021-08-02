@@ -103,3 +103,4 @@ module CarrierWave
 end
 
 require "carrierwave/cloudflare/url"
+require "carrierwave/cloudflare/railtie" if defined?(Rails)
