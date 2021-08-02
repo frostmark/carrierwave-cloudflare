@@ -4,7 +4,7 @@ require_relative "lib/carrierwave/cloudflare/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "carrierwave-cloudflare"
-  spec.version       = Carrierwave::Cloudflare::VERSION
+  spec.version       = CarrierWave::Cloudflare::VERSION
   spec.authors       = ["Mark Frost", "Alexey Taktarov"]
   spec.email         = ["cheerful.mf@gmail.com"]
 
