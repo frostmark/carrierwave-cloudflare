@@ -3,8 +3,7 @@
 [![Tests](https://github.com/resume-io/carrierwave-cloudflare/actions/workflows/run-specs.yml/badge.svg?branch=master)](https://github.com/resume-io/carrierwave-cloudflare/actions/workflows/run-specs.yml)
 [![Gem Version](https://badge.fury.io/rb/carrierwave-cloudflare.svg)](https://badge.fury.io/rb/carrierwave-cloudflare)
 
-This gem provides a simple wrapper for transformation images via Cloudflare
-
+This gem integrates Carrierwave with [Cloudflare Image Resizing](https://developers.cloudflare.com/images/)
 
 
 ## Installation
@@ -57,7 +56,7 @@ Supported options:
 
 `width`, `height`, `dpr`, `fit`, `gravity`, `quality`, `format`, `onerror`, `metadata`
 
-See details in Cloudflare [documentation](https://developers.cloudflare.com/images/about)
+See details in Cloudflare [documentation](https://developers.cloudflare.com/images/url-format)
 
 Also, you can define default options (supports all options described above)
 
