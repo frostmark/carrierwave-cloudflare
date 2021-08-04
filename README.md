@@ -18,7 +18,7 @@ And then execute:
 
     $ bundle install
 
-Or install it yourself as:
+Or install it yourself with:
 
     $ gem install carrierwave-cloudflare
 
@@ -32,7 +32,7 @@ class BaseUploader < CarrierWave::Uploader::Base
 end
 ```
 
-Use `cdn_transform` for define Cloudflare's version (this means that now the file will not be stored on a server, but will be transformed on the cloudflare side)
+Use `cdn_transform` to define Cloudflare's version (this means that now the file will not be stored on a server, but will be transformed on the Cloudflare side)
 
 ```ruby
 class AvatarUploader < BaseUploader
@@ -56,9 +56,9 @@ Supported options:
 
 `width`, `height`, `dpr`, `fit`, `gravity`, `quality`, `format`, `onerror`, `metadata`
 
-See details in Cloudflare [documentation](https://developers.cloudflare.com/images/url-format)
+See details in Cloudflare's [documentation](https://developers.cloudflare.com/images/url-format)
 
-Also, you can define default options (supports all options described above)
+You can also define default options (supports all options described above)
 
 ```ruby
 class BaseUploader < CarrierWave::Uploader::Base
@@ -68,7 +68,7 @@ end
 
 ### In development env
 
-In development, you don't need to generate URLs for Cloudflare, because they will not work and therefore you need to disable the Cloudflare transform
+In development you don't need to generate URLs for Cloudflare, because they will not work and therefore you need to disable the Cloudflare transform
 
 ``` ruby
 CarrierWave::Cloudflare.configure do |config|
@@ -76,7 +76,7 @@ CarrierWave::Cloudflare.configure do |config|
 end
 ```
 
-`cloudflare_transform: false` disables links generation and put all Cloudflare's arguments into query string (for easy debugging)
+`cloudflare_transform: false` disables links generation and puts all Cloudflare's arguments into query string (for easy debugging)
 
 e.g:
 
@@ -100,7 +100,7 @@ cdn_transformed('/cdn-cgi/image/width=100,fit=pad/img.jpg', width: 333)
 
 ### hidpi_image_tag(url, dprs: nil, **options)
 
-Returns an image tag with with scaled variations (via `srcset`) attribute for devices with different DPR values.
+Returns an image tag with scaled variations (via `srcset`) attribute for devices with different DPR values.
 
 
 The transformation of the original image should be specified via options.
@@ -131,7 +131,7 @@ responsive_image_tag('/bird.jpg', width: 1200, sizes: { phone: 600, tablet: 800 
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
