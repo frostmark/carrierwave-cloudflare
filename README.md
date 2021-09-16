@@ -77,9 +77,6 @@ end
 ```
 
 `cloudflare_transform: false` disables links generation and puts all Cloudflare's arguments into query string (for easy debugging)
-
-e.g:
-
 ```
 /1.jpg?cdn-cgi=width-11.height-300.fit-pad
 ```
