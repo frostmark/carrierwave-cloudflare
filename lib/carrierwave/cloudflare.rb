@@ -25,6 +25,10 @@ module CarrierWave
 
         self._default_cdn_options = defaults
       end
+
+      def reset_default_options!
+        self._default_cdn_options = {}
+      end
     end
 
     def self.configure

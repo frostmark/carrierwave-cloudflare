@@ -3,10 +3,8 @@
 require "spec_helper"
 
 RSpec.describe CarrierWave::Cloudflare do
-  let(:uploader) { DummyUploader.new }
-
-  before do
-    class DummyUploader < CarrierWave::Uploader::Base
+  let(:dummy_uploader) do
+    Class.new(CarrierWave::Uploader::Base) do
       include CarrierWave::Cloudflare
 
       default_cdn_options format: :auto, height: 200
@@ -16,6 +14,8 @@ RSpec.describe CarrierWave::Cloudflare do
       end
     end
   end
+
+  let(:uploader) { dummy_uploader.new }
 
   after do
     Object.send(:remove_const, "DummyUploader") if defined?(::DummyUploader)
@@ -88,7 +88,23 @@ RSpec.describe CarrierWave::Cloudflare do
 
   describe ".default_cdn_options" do
     it "just returns default options" do
-      expect(DummyUploader.default_cdn_options).to eql(format: :auto, height: 200)
+      expect(dummy_uploader.default_cdn_options).to eql(format: :auto, height: 200)
+    end
+  end
+
+  describe ".reset_default_options!" do
+    let(:another_dummy_uploader) do
+      Class.new(dummy_uploader) do
+        reset_default_options!
+
+        version :virtual_version do
+          cdn_transform width: 900, height: 900
+        end
+      end
+    end
+
+    it "resets default options inherited from parent class" do
+      expect(another_dummy_uploader.default_cdn_options).to eql({})
     end
   end
 end
