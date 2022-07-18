@@ -47,6 +47,8 @@ module CarrierWave
           image_tag(
             cdn_transformed(url, **transform),
             srcset: hidpi_image_srcset(url, dprs: dprs, **transform),
+            width: transform[:width],
+            height: transform[:height],
             **rest
           )
         end
@@ -73,7 +75,7 @@ module CarrierWave
           url = url.url if url.is_a?(CarrierWave::Uploader)
 
           if sizes.nil?
-            return hidpi_image_tag(url, **options)
+            return hidpi_image_tag(url, width: width, **options)
           end
 
           sizes[:default] = width
@@ -108,6 +110,8 @@ module CarrierWave
             base_version,
             srcset: srcset,
             sizes: sizes_attr,
+            width: width,
+            height: transform[:height],
             **rest
           )
         end
