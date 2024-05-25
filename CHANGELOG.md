@@ -1,6 +1,6 @@
 CHANGELOG
 
-== 0.5.0 (2024-05-25
+== 0.5.0 (2024-05-25)
 
 - Updated dependencies
 
