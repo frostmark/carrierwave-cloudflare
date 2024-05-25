@@ -3,8 +3,7 @@
 [![Tests](https://github.com/resume-io/carrierwave-cloudflare/actions/workflows/run-specs.yml/badge.svg?branch=master)](https://github.com/resume-io/carrierwave-cloudflare/actions/workflows/run-specs.yml)
 [![Gem Version](https://badge.fury.io/rb/carrierwave-cloudflare.svg)](https://badge.fury.io/rb/carrierwave-cloudflare)
 
-This gem integrates CarrierWave with [Cloudflare Image Resizing](https://developers.cloudflare.com/images/image-resizing)
-
+This gem integrates CarrierWave with [Cloudflare Transform images](https://developers.cloudflare.com/images/transform-images/)
 
 ## Installation
 
