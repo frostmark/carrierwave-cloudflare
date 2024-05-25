@@ -26,9 +26,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "actionview", "~> 5.2"
-  spec.add_development_dependency "activesupport", "~> 5.2"
-  spec.add_development_dependency "carrierwave", "~> 1.3"
+  spec.add_development_dependency "actionview", "~> 6.1"
+  spec.add_development_dependency "activesupport", "~> 6.1"
+  spec.add_development_dependency "carrierwave", "~> 2.2.6"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rack", "~> 2.0"
   spec.add_development_dependency "rake"
